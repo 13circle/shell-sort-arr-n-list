@@ -12,7 +12,6 @@
 long *Array_Load_From_File(char *filename, int *size) {
   struct stat st;      // Status structure of the file
   FILE *fp;            // FILE pointer
-  unsigned char *num;  // 
   int i;
   long *arr, n;
 
@@ -34,17 +33,8 @@ long *Array_Load_From_File(char *filename, int *size) {
     return NULL;
   }
 
-  num = (unsigned char *)malloc(sizeof(unsigned char) * (sizeof(long) + 1));
-  if (!num) {
-    fprintf(stderr, "Insufficent Memory: Cannot allocate memory \n");
-    return NULL;
-  }
+  fread(arr, sizeof(long), *size, fp);
 
-  for (i = 0; fread(num, sizeof(long), 1, fp) == 1; i++) {
-    arr[i] = atoi(num);
-  }
-
-  free(num);
   fclose(fp);
   return arr;
 }
