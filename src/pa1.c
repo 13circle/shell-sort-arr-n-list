@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "headers/shell_array.h"
-#include "headers/shell_list.h"
+#include "lib/shell_array.h"
+#include "lib/shell_list.h"
 
 // Help Message
 // Shows correct argument format
