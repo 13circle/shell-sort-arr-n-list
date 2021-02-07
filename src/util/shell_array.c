@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "../headers/shell_array.h"
+#include "../lib/shell_array.h"
 
 long *Array_Load_From_File(char *filename, int *size) {
   struct stat st;      // Status structure of the file
