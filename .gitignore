@@ -3,3 +3,4 @@ pa1
 sample_inputs
 sample_outputs
 *.swp
+*.o
