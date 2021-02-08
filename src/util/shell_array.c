@@ -86,7 +86,7 @@ int Array_Save_To_File(char *filename, long *array, int size) {
   // Write long type integers to the file & count successfully written integers
   for (i = cnt_output = 0; i < size; i++, cnt_output++) {
     if(fwrite(array + i, sizeof(long), 1, fp) != 1) {
-      break;
+      cnt_output--;
     }
   }
 
