@@ -32,6 +32,8 @@ int main(int argc, char *argv[]) {
   int size;            // Size of the array/list
   int cnt_output;      // Number of integers successfully written in an output file
   long *arr;           // Pointer of the array
+  Node *list;          // Head of the list
+  Node *tmp;           // Temporary pointer of the list
   long n_comp;         // Number of comparison
 
   char *option;        // Option argument (-a|-l)
@@ -66,7 +68,19 @@ int main(int argc, char *argv[]) {
 
   // Handle linked list
   if (!strcmp(option, "-l")) {
-    // TODO: Use helper functions in shell_list.c
+    list = List_Load_From_File(input_file);
+
+    list = List_Shellsort(list, &n_comp);
+
+    cnt_output = List_Save_To_File(output_file, list);
+
+    printf("%ld\n", n_comp);
+
+    while (list) {
+      tmp = list;
+      list = list->next;
+      free(tmp);
+    }
   }
 
   return 0;
