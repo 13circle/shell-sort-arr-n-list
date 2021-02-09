@@ -5,7 +5,7 @@ if [ ! -z pa1 ]; then
   echo ""
   echo "Creating project..."
   git clone https://github.com/13circle/shell-sort-arr-n-list pa1 > /dev/null 2>&1
-  rm -rf pa1/.git pa1/README.md pa1/.gitignore
+  rm -rf pa1/.git pa1/README.md pa1/.gitignore pa1/get-pa1.sh
   echo "Project created successfully. (Directory \"./pa1\" is created)"
   echo ""
 else
