@@ -32,12 +32,14 @@ Node *List_Load_From_File(char *filename) {
     // Create new Node & assign the value
     tmp = (Node *)malloc(sizeof(Node));
     tmp->value = value;
-    tmp->next = NULL;
 
     // Connect new Node to the list
     if (head) tail->next = tmp;
     else head = tmp;
   }
+
+  // Assign NULL at the tail to notify the end of the list
+  tmp->next = NULL;
 
   // Close the file & return the list
   fclose(fp);
