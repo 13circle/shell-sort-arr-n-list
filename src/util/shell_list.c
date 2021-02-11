@@ -95,8 +95,18 @@ int List_Save_To_File(char *filename, Node *list) {
  **/
 Node *List_Shellsort(Node *list, long *n_comp) {
   // TODO: Shell Sort linked list
-  // 1. Evaluate the size of the list
+  // 1. Evaluate the size of the list - DONE
   // 2. Evaluate Knuth's Sequence
+
+	int k;
+	int size;
+	Node *tmp;
+	Node *sorted;
+
+	for (size = 0, tmp = list; tmp; size++, tmp = tmp->next);
+  
+	for (k = 1; k < size; k = k * 3 + 1);
+
   *n_comp = 0;
   return list;
 }
