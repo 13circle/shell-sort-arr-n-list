@@ -19,6 +19,5 @@ echo ""
 echo "Building project..."
 sleep 3
 make -C pa1
-echo "Project built in successfully."
 echo ""
 
