@@ -118,7 +118,7 @@ void Array_Shellsort(long *array, int size, long *n_comp) {
   for (*n_comp = 0; k > 0; k /= 3) {
     for (j = k; j < size; j++) {
       tmp = array[j];
-      for (i = j; i >= k && array[i - k] > tmp; i -= k) {
+      for (i = j, (*n_comp)++; i >= k && array[i - k] > tmp; i -= k) {
         array[i] = array[i - k];
         (*n_comp)++;
       }
