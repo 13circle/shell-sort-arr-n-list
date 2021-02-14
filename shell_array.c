@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "../lib/shell_array.h"
+#include "shell_array.h"
 
 
 /**

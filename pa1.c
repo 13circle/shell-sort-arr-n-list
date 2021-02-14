@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lib/shell_array.h"
-#include "lib/shell_list.h"
+#include "shell_array.h"
+#include "shell_list.h"
 
 /**
  *  Help Message

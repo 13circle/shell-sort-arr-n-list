@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../lib/list_of_list.h"
+#include "list_of_list.h"
 
 /**
  *  Read long type integers from an input file to the list
