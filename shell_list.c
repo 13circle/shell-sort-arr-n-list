@@ -1,7 +1,7 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 
-#include "list_of_list.h"
+#include "shell_list.h"
 
 /**
  *  Read long type integers from an input file to the list
@@ -81,6 +81,41 @@ int List_Save_To_File(char *filename, Node *list) {
   return cnt_output;
 }
 
+Node *get_pos(Node *list, int pos) {
+  Node *node;
+  int i;
+  for (node = list, i = 0; i < pos; node = node->next, i++);
+  return node;
+}
+
+Node *swap_node(Node *list, int pos1, int pos2) {
+  Node *prev1;
+  Node *prev2;
+  Node *node1;
+  Node *node2;
+  Node *tmp;
+
+  if (!list) return NULL;
+
+  if (pos1 == pos2) return list;
+
+  node1 = get_pos(list, pos1);
+
+  node2 = get_pos(list, pos2);
+
+  if (node1 && node2) {
+    if (prev1) prev1->next = node2;
+    else list = node2;
+    if (prev2) prev2->next = node1;
+    else list = node1;
+  }
+
+  tmp = node1->next;
+  node1->next = node2->next;
+  node2->next = tmp;
+
+  return list;
+}
 
 /**
  *  Shell-Sort the given list
@@ -94,20 +129,28 @@ int List_Save_To_File(char *filename, Node *list) {
  *
  **/
 Node *List_Shellsort(Node *list, long *n_comp) {
-  // TODO: Shell Sort linked list
-  // 1. Evaluate the size of the list - DONE
-  // 2. Evaluate Knuth's Sequence
+  int k;
+  int j;
+  int i;
+  int size;
+  Node *tmp1, *tmp2;
 
-	int k;
-	int size;
-	Node *tmp;
-	Node *sorted;
-
-	for (size = 0, tmp = list; tmp; size++, tmp = tmp->next);
+  for (size = 0, tmp1 = list; tmp1; size++, tmp1 = tmp1->next);
   
-	for (k = 1; k < size; k = k * 3 + 1);
+  for (k = 1; k < size; k = k * 3 + 1);
 
-  *n_comp = 0;
+  for (*n_comp = 0; k > 0; k /= 3) {
+    for (j = k; j < size; j++) {
+      tmp1 = get_pos(list, j);
+      for (i = j; i >= k; i -= k) {
+        tmp2 = get_pos(list, i - k);
+        (*n_comp)++;
+        if (tmp2->value <= tmp1->value) break;
+        list = swap_node(list, i - k, i);
+      }
+    }
+  }
+
   return list;
 }
 
