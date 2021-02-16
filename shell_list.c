@@ -1,7 +1,7 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
-#include "shell_list.h"
+#include "list_of_list.h"
 
 /**
  *  Read long type integers from an input file to the list
@@ -94,14 +94,21 @@ Node *swap_node(Node *list, int pos1, int pos2) {
   Node *node1;
   Node *node2;
   Node *tmp;
+  int i;
 
   if (!list) return NULL;
 
   if (pos1 == pos2) return list;
 
-  node1 = get_pos(list, pos1);
+  for (node1 = list, i = 0; i < pos1; i++) {
+    prev1 = node1;
+    node1 = node1->next;
+  }
 
-  node2 = get_pos(list, pos2);
+  for (node2 = list, i = 0; i < pos2; i++) {
+    prev2 = node2;
+    node2 = node2->next;
+  }
 
   if (node1 && node2) {
     if (prev1) prev1->next = node2;
@@ -132,6 +139,7 @@ Node *List_Shellsort(Node *list, long *n_comp) {
   int k;
   int j;
   int i;
+  int t;
   int size;
   Node *tmp1, *tmp2;
 
@@ -142,12 +150,14 @@ Node *List_Shellsort(Node *list, long *n_comp) {
   for (*n_comp = 0; k > 0; k /= 3) {
     for (j = k; j < size; j++) {
       tmp1 = get_pos(list, j);
+      t = j;
       for (i = j; i >= k; i -= k) {
         tmp2 = get_pos(list, i - k);
         (*n_comp)++;
         if (tmp2->value <= tmp1->value) break;
         list = swap_node(list, i - k, i);
       }
+      list = swap_node(list, i, t);
     }
   }
 
