@@ -115,11 +115,11 @@ Node *swap_node(Node *list, int pos1, int pos2) {
     else list = node2;
     if (prev2) prev2->next = node1;
     else list = node1;
-  }
 
-  tmp = node1->next;
-  node1->next = node2->next;
-  node2->next = tmp;
+    tmp = node1->next;
+    node1->next = node2->next;
+    node2->next = tmp;
+  }
 
   return list;
 }
@@ -149,15 +149,13 @@ Node *List_Shellsort(Node *list, long *n_comp) {
 
   for (*n_comp = 0; k > 0; k /= 3) {
     for (j = k; j < size; j++) {
-      tmp1 = get_pos(list, j);
-      t = j;
-      for (i = j; i >= k; i -= k) {
-        tmp2 = get_pos(list, i - k);
+      for (i = j - k; i >= 0; i -= k) {
+        tmp1 = get_pos(list, i);
+        tmp2 = get_pos(list, i + k);
         (*n_comp)++;
-        if (tmp2->value <= tmp1->value) break;
-        list = swap_node(list, i - k, i);
+        if (tmp1->value <= tmp2->value) break;
+        list = swap_node(list, i, i + k);
       }
-      list = swap_node(list, i, t);
     }
   }
 
